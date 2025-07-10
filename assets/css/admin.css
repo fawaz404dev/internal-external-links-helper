@@ -1,0 +1,458 @@
+/**
+ * ملف الأنماط الخاص بلوحة التحكم
+ * 
+ * @package Internal External Links Helper
+ * @author فوزي جمعة
+ */
+
+/* الأنماط العامة للإضافة */
+.ielh-modal {
+    display: none;
+    position: fixed;
+    z-index: 100000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.ielh-modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 0;
+    border: 1px solid #ccd0d4;
+    border-radius: 4px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    animation: ielh-modal-appear 0.3s ease-out;
+}
+
+@keyframes ielh-modal-appear {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.ielh-modal-header {
+    background: #f6f7f7;
+    border-bottom: 1px solid #ccd0d4;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ielh-modal-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.ielh-modal-close {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #646970;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    transition: all 0.2s;
+}
+
+.ielh-modal-close:hover {
+    background: #f0f0f1;
+    color: #1d2327;
+}
+
+.ielh-modal-body {
+    padding: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.ielh-modal-footer {
+    background: #f6f7f7;
+    border-top: 1px solid #ccd0d4;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* نموذج اختيار الرابط */
+.ielh-form-group {
+    margin-bottom: 20px;
+}
+
+.ielh-form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #1d2327;
+}
+
+.ielh-form-group select,
+.ielh-form-group input[type="text"],
+.ielh-form-group input[type="search"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #8c8f94;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 1.4;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+
+.ielh-form-group select:focus,
+.ielh-form-group input[type="text"]:focus,
+.ielh-form-group input[type="search"]:focus {
+    border-color: #2271b1;
+    outline: none;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+.ielh-search-container {
+    position: relative;
+}
+
+.ielh-search-input {
+    padding-left: 35px !important;
+}
+
+.ielh-search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #646970;
+    pointer-events: none;
+}
+
+.ielh-posts-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.ielh-post-item {
+    padding: 12px 15px;
+    border-bottom: 1px solid #f0f0f1;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ielh-post-item:last-child {
+    border-bottom: none;
+}
+
+.ielh-post-item:hover {
+    background-color: #f6f7f7;
+}
+
+.ielh-post-item.selected {
+    background-color: #e7f3ff;
+    border-color: #2271b1;
+}
+
+.ielh-post-info {
+    flex: 1;
+}
+
+.ielh-post-title {
+    font-weight: 600;
+    color: #1d2327;
+    margin-bottom: 4px;
+    line-height: 1.3;
+}
+
+.ielh-post-meta {
+    font-size: 12px;
+    color: #646970;
+    display: flex;
+    gap: 10px;
+}
+
+.ielh-post-type {
+    background: #f0f6fc;
+    color: #2271b1;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.ielh-post-url {
+    font-family: monospace;
+    font-size: 11px;
+    color: #646970;
+    word-break: break-all;
+}
+
+.ielh-loading {
+    text-align: center;
+    padding: 40px 20px;
+    color: #646970;
+}
+
+.ielh-loading .dashicons {
+    animation: ielh-spin 1s linear infinite;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+@keyframes ielh-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.ielh-empty-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: #646970;
+}
+
+.ielh-empty-results .dashicons {
+    font-size: 48px;
+    opacity: 0.3;
+    margin-bottom: 15px;
+}
+
+.ielh-error {
+    background: #fcf2f2;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+}
+
+/* أزرار الإضافة */
+.ielh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border: 1px solid;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    line-height: 1.4;
+}
+
+.ielh-btn-primary {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.ielh-btn-primary:hover {
+    background: #135e96;
+    border-color: #135e96;
+    color: #fff;
+}
+
+.ielh-btn-primary:disabled {
+    background: #a7aaad;
+    border-color: #a7aaad;
+    cursor: not-allowed;
+}
+
+.ielh-btn-secondary {
+    background: #f6f7f7;
+    border-color: #dcdcde;
+    color: #1d2327;
+}
+
+.ielh-btn-secondary:hover {
+    background: #f0f0f1;
+    border-color: #8c8f94;
+    color: #1d2327;
+}
+
+/* زر إدراج الرابط في المحرر */
+#ielh-insert-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 5px;
+}
+
+#ielh-insert-link-btn .dashicons {
+    font-size: 16px;
+}
+
+/* تحسينات للشاشات الصغيرة */
+@media (max-width: 768px) {
+    .ielh-modal-content {
+        width: 95%;
+        margin: 2% auto;
+        max-height: 95vh;
+    }
+    
+    .ielh-modal-header {
+        padding: 12px 15px;
+    }
+    
+    .ielh-modal-body {
+        padding: 15px;
+        max-height: 70vh;
+    }
+    
+    .ielh-modal-footer {
+        padding: 12px 15px;
+        flex-direction: column;
+    }
+    
+    .ielh-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .ielh-post-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .ielh-post-meta {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* تحسينات إضافية للواجهة */
+.ielh-preview-text {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 15px 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+}
+
+.ielh-preview-label {
+    font-size: 12px;
+    color: #646970;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.ielh-preview-content {
+    color: #1d2327;
+}
+
+.ielh-preview-link {
+    color: #2271b1;
+    text-decoration: underline;
+}
+
+/* تحسينات للنصوص العربية */
+.ielh-modal-content,
+.ielh-form-group,
+.ielh-post-item {
+    direction: rtl;
+    text-align: right;
+}
+
+.ielh-post-url {
+    direction: ltr;
+    text-align: left;
+}
+
+/* تأثيرات التحميل */
+.ielh-loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.ielh-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #2271b1;
+    border-radius: 50%;
+    animation: ielh-spin 1s linear infinite;
+}
+
+/* تحسينات للوصولية */
+.ielh-modal-content:focus {
+    outline: none;
+}
+
+.ielh-post-item:focus {
+    outline: 2px solid #2271b1;
+    outline-offset: -2px;
+}
+
+.ielh-btn:focus {
+    outline: 2px solid #2271b1;
+    outline-offset: 2px;
+}
+
+/* رسائل التنبيه */
+.ielh-notice {
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin: 15px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ielh-notice-success {
+    background: #d1e7dd;
+    border: 1px solid #badbcc;
+    color: #0f5132;
+}
+
+.ielh-notice-error {
+    background: #f8d7da;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+}
+
+.ielh-notice-warning {
+    background: #fff3cd;
+    border: 1px solid #ffecb5;
+    color: #664d03;
+}
+
+.ielh-notice-info {
+    background: #d1ecf1;
+    border: 1px solid #b8daff;
+    color: #055160;
+}
